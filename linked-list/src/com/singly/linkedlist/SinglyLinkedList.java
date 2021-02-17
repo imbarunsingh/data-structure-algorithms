@@ -1,62 +1,74 @@
 package com.singly.linkedlist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.linkedlist.util.EmptyLinkedListException;
 
 public class SinglyLinkedList {
-	
-	private Node head, tail; // First & last node in the linked list
+
+	// First & last node in the linked list
+	private Node head, tail;
+
+	private int size;
 
 	public SinglyLinkedList() {
-		super();		
 	}
 
-	public boolean isEmpty() {		
-		return head == null;
+	public boolean isEmpty() {
+		return size == 0;
+
 	}
-	
-	public boolean insertAtBegining(int data) {		
-		Node newNode = new Node(data);		
+
+	public boolean insertAtBegining(int data) {
 		
-		if(isEmpty()) {			
-			head = tail = newNode;//Only one node
-			return true;
-		}		
-		newNode.setNext(head);
-		head = newNode; //Making the new node as the head/first
-		return true;
-	}		
-	
+		Node newNode = new Node(data);
+		boolean isSuccess = true;
+		if (isEmpty()) {
+			head = tail = newNode;// Only one node
+			isSuccess = true;
+		} else {
+			newNode.setNext(head);
+			head = newNode; // Making the new node as the head/first
+		}
+		size++;
+		return isSuccess;
+	}
+
 	public boolean insertAtEnd(int data) {
-		Node newNode = new Node(data);		
-		
-		if(isEmpty()) {
-			head = tail = newNode; //Only one node
+		Node newNode = new Node(data);
+
+		if (isEmpty()) {
+			head = tail = newNode; // Only one node
 			return true;
-		}		
+		}
 		tail.setNext(newNode);
+		newNode.setNext(null);
+
 		tail = newNode; // making the new node to be the tail/last node in the list
+		size++;
 		return true;
 	}
-	
-	//Inserts a new node with data after index(array Index)
+
+	// Inserts a new node with data after index(array Index)
 	public boolean insertAfter(int index, int data) {
 		int listLength = getListLength();
-		
-		if(isEmpty()) {
+
+		if (isEmpty()) {
 			throw new EmptyLinkedListException("The List is Empty");
-		} else if(index < 0 || index > listLength - 1) {
+		} else if (index < 0 || index > listLength - 1) {
 			throw new IndexOutOfBoundsException(String.valueOf(index));
-		} else if(index == listLength - 1) {
+		} else if (index == listLength - 1) {
 			insertAtEnd(data);
 			return true;
 		}
-		
+
 		Node currentNode = head;
 		Node nextNode = null;
 		int length = 0;
 		while (currentNode != null) {
-			length++;			
-			if(length - 1 == index) { // because array index from 0
+			length++;
+			if (length - 1 == index) { // because array index from 0
 				nextNode = currentNode.getNext();
 				break;
 			}
@@ -65,106 +77,89 @@ public class SinglyLinkedList {
 		Node newNode = new Node(data);
 		newNode.setNext(nextNode);
 		currentNode.setNext(newNode);
+		size++;
 		return true;
 	}
-	
+
 	public Node deleteFromBegining() {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			throw new EmptyLinkedListException("Linked List is Empty, Nothing to delete");
 		}
 		Node temp = head;
-		head = head.getNext();		
+		head = head.getNext();
+		size--;
 		return temp;
 	}
-	
+
 	public Node deleteFromEnd() {
 		Node deletedNode = tail;
-		if(isEmpty()) {
+		if (isEmpty()) {
 			throw new EmptyLinkedListException("Linked List is Empty, Nothing to delete");
-		} else if(head.getNext() == null) { //one element in the list
+		} else if (head.getNext() == null) { // one element in the list
 			deletedNode = head;
 			head = tail = null;
 		} else { // More than one element in the list
 			Node currentNode = head;
-			while(currentNode != null) {						
-				if(currentNode.getNext() == tail) {
+			while (currentNode != null) {
+				if (currentNode.getNext() == tail) {
 					currentNode.setNext(null);
 					tail = currentNode;
 					break;
-				}		
+				}
 				currentNode = currentNode.getNext();
-			}	
-		}	
+			}
+		}
+		size--;
 		return deletedNode;
 	}
-	
-	//Deletes a linked list node at specific index
+
+	// Deletes a linked list node at specific index
 	public Node deleteNodeAtIndex(int index) {
 		Node deletedNode = null;
 		int listLength = getListLength();
-		
-		if(isEmpty()) {
+
+		if (isEmpty()) {
 			throw new EmptyLinkedListException("The Linkedlist is empty::");
-		} else if(index < 0 || index > listLength - 1) {
+		} else if (index < 0 || index > listLength - 1) {
 			throw new IndexOutOfBoundsException(String.valueOf(index));
-		} else if(index == listLength - 1) {
-			return deleteFromEnd();		
-		} else if(index == 0) {
+		} else if (index == listLength - 1) {
+			return deleteFromEnd();
+		} else if (index == 0) {
 			return deleteFromBegining();
 		}
-		
+
 		Node currentNode = head;
 		Node nextNode = null, previousNode = null;
-		
+
 		int traversedIndex = 0;
-		while(currentNode != null) {						
-			if(traversedIndex == index) {
+		while (currentNode != null) {
+			if (traversedIndex == index) {
 				nextNode = currentNode.getNext();
 				deletedNode = currentNode;
-				currentNode = null; //Making ready for GC, anyway local variables are null when the scope is done
+				currentNode = null; // Making ready for GC, anyway local variables are null when the scope is done
 				break;
 			}
 			traversedIndex++;
 			previousNode = currentNode;
 			currentNode = currentNode.getNext();
 		}
-		previousNode.setNext(nextNode);			
+		previousNode.setNext(nextNode);
 		return deletedNode;
 	}
-	
-	public void displayList() {		
+
+	public void printList() {
 		Node currentNode = head;
-		if(isEmpty()) {
-			throw new EmptyLinkedListException("Linked List is Empty, Nothing to delete");			
+		if (isEmpty()) {
+			System.out.println("[]"); // Empty List
 		}
-		while(currentNode != null) {
+		while (currentNode != null) {
 			System.out.println(currentNode);
-			currentNode = currentNode.getNext();			
+			currentNode = currentNode.getNext();
 		}
 	}
-	
-	//Gets the list length from a specific node
-	public int getListLength(Node node) {
-		int length = 0;
-		while(null != node) {
-			length++;
-			node = node.getNext();
-		}
-		return length;
-	}
-	
-	//Gets the list length from a specific node
-	public int getListLength() {
-		int length = 0;
-		if(isEmpty()) {
-			return length;			
-		}		
-		Node currentNode = head;
-		while(null != currentNode) {
-			length++;			
-			currentNode = currentNode.getNext();				
-		}
-		return length;
+
+	public int getSize() {
+		return size;
 	}
 
 }
