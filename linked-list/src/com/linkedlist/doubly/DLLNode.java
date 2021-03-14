@@ -1,15 +1,15 @@
-package com.doubly.linkedlist;
+package com.linkedlist.doubly;
 
-//Linked List class structure
-public class Node {
+//Linked List class structure for doubly linked list
+public class DLLNode {
 
 	private int data;
-	private Node next;
-	private Node previous;
+	private DLLNode next;
+	private DLLNode previous;
 
-	public Node() {}
+	public DLLNode() {}
 	
-	public Node(int data) {
+	public DLLNode(int data) {
 		this.data = data;
 	}
 
@@ -21,19 +21,19 @@ public class Node {
 		this.data = data;
 	}
 
-	public Node getNext() {
+	public DLLNode getNext() {
 		return next;
 	}
 
-	public void setNext(Node next) {
+	public void setNext(DLLNode next) {
 		this.next = next;
 	}
 
-	public Node getPrevious() {
+	public DLLNode getPrevious() {
 		return previous;
 	}
 
-	public void setPrevious(Node previous) {
+	public void setPrevious(DLLNode previous) {
 		this.previous = previous;
 	}
 

@@ -1,4 +1,4 @@
-package com.singly.linkedlist;
+package com.linkedlist;
 
 //Linked List class structure
 public class Node {

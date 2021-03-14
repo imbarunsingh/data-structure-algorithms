@@ -1,4 +1,4 @@
-package com.linkedlist.util;
+package com.linkedlist;
 
 public class EmptyLinkedListException extends RuntimeException {
 

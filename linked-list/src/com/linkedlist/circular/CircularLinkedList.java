@@ -1,53 +1,54 @@
-package com.circular.linkedlist;
+package com.linkedlist.circular;
 
-import com.linkedlist.util.EmptyLinkedListException;
-import com.singly.linkedlist.Node;
+import com.linkedlist.EmptyLinkedListException;
+import com.linkedlist.Node;
 
 public class CircularLinkedList {
 	
 	private Node head, tail; // First & last node in the linked list
+	
+	private int size;
 
 	public CircularLinkedList() {
 		super();		
 	}
 
 	public boolean isEmpty() {
-		return head == null; // Can't use head.equals(null) since it gives NullPointer exception for empty list
+		return size == 0;
 	}
 	
-	public boolean insertAtBegining(int data) {		
+	public void insertAtBegining(int data) {		
 		Node newNode = new Node(data);		
-		
 		if(isEmpty()) {
 			head = tail = newNode;//Only one node
-			return true;
-		}		
-		newNode.setNext(head);
-		head = newNode; //Making the new node as the head/first
-		tail.setNext(head);
-		return true;
+		} else {
+			newNode.setNext(head);
+			head = newNode; //Making the new node as the head/first
+			tail.setNext(head);
+		}
+		size++;
 	}		
 	
-	public boolean insertAtEnd(int data) {
-		Node newNode = new Node(data);		
-		
+	public void insertAtEnd(int data) {
+		Node newNode = new Node(data);			
 		if(isEmpty()) {
 			head = tail = newNode; //Only one node
-			return true;
-		}	
-		tail.setNext(newNode);
-		tail = newNode; // Making the newly added noded as the tail node
-		tail.setNext(head);// Pointing back to the head node
-		return true;
+		} else {
+			tail.setNext(newNode);
+			tail = newNode; // Making the newly added noded as the tail node
+			tail.setNext(head);// Pointing back to the head node
+		}
+		size++;
 	}
 	
 	//Inserts a new node with data after index(array Index)	
 	public boolean insertAfter(int index, int data) {
-		int listLength = getListLength();
-		
-		if(index > listLength - 1) {
+		Node newNode = new Node(data);
+		if(isEmpty()) {
+			head = tail = newNode;
+		}else if(index > size - 1) {
 			throw new ArrayIndexOutOfBoundsException(index);
-		} else if(index == listLength - 1) {
+		} else if(index == size - 1) {
 			insertAtEnd(data);
 			return true;
 		}
@@ -63,7 +64,7 @@ public class CircularLinkedList {
 			}
 			currentNode = currentNode.getNext();
 		}
-		Node newNode = new Node(data);
+		
 		newNode.setNext(nextNode);
 		currentNode.setNext(newNode);
 		return true;

@@ -1,4 +1,4 @@
-package com.circular.linkedlist;
+package com.linkedlist.circular;
 
 public class Demo {
 	public static void main(String[] args) {
