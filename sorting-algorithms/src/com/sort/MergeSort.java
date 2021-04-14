@@ -1,4 +1,4 @@
-package com.mergersort;
+package com.sort;
 
 public class MergeSort {
 	
@@ -6,7 +6,7 @@ public class MergeSort {
 		
 		int arr[] = {12,8,3,11,7};
 		
-		int startIndex = 0;
+		int startIndex = 0; 
 		int endIndex = arr.length - 1;
 		mergeSort(arr, startIndex, endIndex);
 		
@@ -17,7 +17,7 @@ public class MergeSort {
 
 	private static void mergeSort(int[] arr, int startIndex, int endIndex) {
 		
-		if(endIndex <= startIndex) return;
+		if(startIndex >= endIndex) return;
 		
 		int midIndex = (startIndex + endIndex)/2;
 		mergeSort(arr, startIndex, midIndex); //Sort Left Half
@@ -52,7 +52,7 @@ public class MergeSort {
 		if(leftSlot <= midIndex) {
 			while (leftSlot <= midIndex) {
 				tempArray[k] = arr[leftSlot];
-				leftSlot++;
+				leftSlot++; 
 				k++;
 			}
 		} else if(rightSlot <= endIndex) {

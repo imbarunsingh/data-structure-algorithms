@@ -1,4 +1,4 @@
-package com.bst;
+package com.tree;
 
 public class Application {
 	
@@ -8,6 +8,9 @@ public class Application {
 	public static void main(String[] args) {
 		
 		BinarySearchTree tree = new BinarySearchTree();
+		
+		
+		
 		
 				
 		tree.insertRecord(50);
@@ -20,8 +23,8 @@ public class Application {
 		
 		System.out.println("---------Get min & max---------");
 		
-		System.out.println(tree.findMinimum().getKey());
-		System.out.println(tree.findMaximum().getKey());
+		System.out.println(tree.findMinimum().getData());
+		System.out.println(tree.findMaximum().getData());
 		
 		System.out.println("-----Remove node from tree-----");
 		System.out.println(tree.remove(20));

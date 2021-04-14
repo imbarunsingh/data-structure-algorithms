@@ -1,4 +1,4 @@
-package com.bst;
+package com.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -12,7 +12,7 @@ public class BinarySearchTree {
 		return root == null;
 	}
 
-	public void insertRecord(int key) {
+	public void insertRecord(Object key) {
 
 		Node newNode = new Node(key);
 
@@ -25,7 +25,7 @@ public class BinarySearchTree {
 		Node parent;
 		while (current != null) {
 			parent = current; // To store the detail of the current node
-			if (key < current.getKey()) {
+			if ((Integer)key < (Integer)current.getData()) {
 				current = current.getLeftChild();
 				if (current == null) { // It's parent is the leaf node
 					parent.setLeftChild(newNode);
@@ -46,10 +46,10 @@ public class BinarySearchTree {
 		boolean isLeftChild = false;
 
 		// Search the node with the key to delete
-		while (currentNode.getKey() != key) { // Comparing with the root node key
+		while ((Integer)currentNode.getData() != (Integer)key) { // Comparing with the root node key
 			parentNode = currentNode;
 
-			if (key < currentNode.getKey()) {
+			if ((Integer)key < (Integer)currentNode.getData()) {
 				currentNode = currentNode.getLeftChild();
 				isLeftChild = true;
 			} else {
@@ -128,23 +128,18 @@ public class BinarySearchTree {
 	public Node findMinimum() {
 
 		Node current = root;
-		Node last = null;
-		while (current != null) {
-			last = current;
+		while (current.getLeftChild() != null) {			
 			current = current.getLeftChild();
 		}
-		return last;
+		return current;
 	}
 
 	public Node findMaximum() {
-
 		Node current = root;
-		Node last = null;
-		while (current != null) {
-			last = current;
+		while (current.getRightChild() != null) {			
 			current = current.getRightChild();
 		}
-		return last;
+		return current;
 	}
 
 	public void displayBinarySearchTree() {
@@ -176,7 +171,7 @@ public class BinarySearchTree {
 				if (current.getRightChild() != null) {
 					bstQueue.add(current.getRightChild());
 				}
-				System.out.print(current.getKey() + " ");
+				System.out.print(current.getData() + " ");
 			}
 
 		}
