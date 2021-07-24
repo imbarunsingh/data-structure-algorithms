@@ -1,6 +1,7 @@
 package com.search;
 
-public class BinarySearchDemo {
+//Time Complexity : O(nlogn) : divide and conquer
+public class BinarySearch {
 	public static void main(String[] args) {
 
 		int array[] = { 10, 20, 50, 80, 88, 99 };
@@ -19,7 +20,7 @@ public class BinarySearchDemo {
 		int startIndex = 0;
 		int endIndex = array.length - 1;
 
-		while (startIndex <= endIndex) {
+		while (startIndex < endIndex) {
 			int midIndex = (startIndex + endIndex) / 2;
 			if (searchElement == array[midIndex]) {
 				elementFoundAtIndex = midIndex;

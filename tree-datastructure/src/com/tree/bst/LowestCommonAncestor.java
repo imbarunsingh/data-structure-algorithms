@@ -13,11 +13,11 @@ public class LowestCommonAncestor {
 		while (rootNode != null) {
 			int rootNodeData = (Integer) rootNode.getData();
 
-			if (node1 < rootNodeData && node2 < rootNodeData) {
+			if (node1 < rootNodeData && node2 < rootNodeData) {//Both being less than root node
 				rootNode = rootNode.getLeftChild();
-			} else if (node1 > rootNodeData && node2 > rootNodeData) {
+			} else if (node1 > rootNodeData && node2 > rootNodeData) {//Both being greater than root node
 				rootNode = rootNode.getRightChild();
-			} else {
+			} else { // When one is less and other being greater than the root node
 				break;
 			}
 		}

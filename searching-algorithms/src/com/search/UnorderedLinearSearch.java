@@ -2,7 +2,7 @@ package com.search;
 
 // Has a Linear Growth Rate with O(n2)
 //Linear Search works on both sorted(has a better performance here) and unsorted array(Not that efficient)
-public class LinearSearchDemo {
+public class UnorderedLinearSearch {
 
 	public static void main(String[] args) {
 
