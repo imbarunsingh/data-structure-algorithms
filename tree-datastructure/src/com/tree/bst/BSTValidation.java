@@ -31,12 +31,15 @@ class BSTValidationRangeSolution {
 		if (root == null) {
 			return true;
 		}
-		int data = (Integer) root.getData();
-
-		return data > min && data < max 
-				&& isBinarySearchTree(root.getLeftChild(), min, data)
-				&& isBinarySearchTree(root.getRightChild(), data, max);
-
+		int data = (Integer) root.getData();		
+		
+		if(data > min && data < max) {
+			boolean left = isBinarySearchTree(root.getLeftChild(), min, data);
+			boolean right = isBinarySearchTree(root.getRightChild(), max, data);
+			return left && right;
+		} else {
+			return false;
+		}
 	}
 }
 
@@ -49,7 +52,7 @@ class BSTValidationInorderTraversalSolution {
 		if (root == null) {
 			return true;
 		}
-		if (isBST(root.getLeftChild()) == false) {
+		if (!isBST(root.getLeftChild())) {
 			return false;
 		}
 		if ((Integer) root.getData() <= prev) {

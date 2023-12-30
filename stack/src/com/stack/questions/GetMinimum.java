@@ -28,13 +28,6 @@ class GetMinimumImpl {
 		elementStack.push(data);
 	}
 
-	public void pop() {
-		if (elementStack.peek() == minStack.peek()) {
-			minStack.pop();
-		}
-		elementStack.pop();
-	}
-
 	public int getMinimun() {
 		return minStack.peek();
 	}

@@ -2,7 +2,7 @@ package com.recursion;
 
 import java.util.Scanner;
 
-/*
+/*	O(branches power n)
  * Time Complexity: T(n) = T(n-1) + T(n-2)
  * T(n) = 2T(n-1). 
 	O(2 power n)

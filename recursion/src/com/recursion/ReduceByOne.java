@@ -6,8 +6,7 @@ public class ReduceByOne {
 		reduceByOne(10);
 	}
 
-	private static void reduceByOne(int n) {
-		
+	private static void reduceByOne(int n) {		
 		if(n>0) {
 			reduceByOne(n-1);
 		}

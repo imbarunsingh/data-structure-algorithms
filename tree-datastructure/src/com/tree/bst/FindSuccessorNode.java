@@ -18,8 +18,7 @@ public class FindSuccessorNode {
 			currentNode = currentNode.getLeftChild();
 		}
 		
-		System.out.println("The successor node to the root node here is : " + currentNode.getData());
-		
+		System.out.println("The successor node to the root node here is : " + currentNode.getData());		
 		
 	}
 

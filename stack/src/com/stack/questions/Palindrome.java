@@ -40,7 +40,6 @@ class PalindromeUtil {
 					return false;
 				}
 			}
-
 		}
 		return true;
 	}

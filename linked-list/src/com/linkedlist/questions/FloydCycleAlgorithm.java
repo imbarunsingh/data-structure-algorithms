@@ -10,14 +10,13 @@ class FloydCycleAlgorithmImpl {
 		if (head == null) {
 			throw new EmptyLinkedListException("Empty Linked List Exception");
 		}
-
 		Node slowPointer = head;
 		Node fastPointer = head;
 
 		while (fastPointer != null && fastPointer.getNext() != null) {
 			slowPointer = slowPointer.getNext();
-			fastPointer = fastPointer.getNext().getNext();
-
+			fastPointer = fastPointer.getNext().getNext(); //2x the speed of slow pointer
+			
 			if (slowPointer == fastPointer) {
 				return true;
 			}
@@ -41,7 +40,6 @@ class FloydCycleAlgorithmImpl {
 				hasLoop = true;
 				break;
 			}
-
 		}
 
 		if (hasLoop) {
@@ -133,7 +131,7 @@ public class FloydCycleAlgorithm {
 
 		FloydCycleAlgorithmImpl floydCycleAlgorithm = new FloydCycleAlgorithmImpl();
 
-		System.out.println("--Asserting the hasLoop when there is no Loop--");
+		System.out.println("--Asserting the LinkedList when there is no Loop--");
 		System.out.println("Does linked list has loop:: " + floydCycleAlgorithm.hasLoop(linkedList.getHead()));
 		System.out.println("-------------------------------------------------------");
 

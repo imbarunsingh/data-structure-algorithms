@@ -26,9 +26,15 @@ class SameTree {
 		if (root1 == null || root2 == null) {
 			return false;
 		}
-
-		return root1.getData().equals(root2.getData()) 
-				&& isSameTree(root1.getLeftChild(), root2.getLeftChild())
-				&& isSameTree(root1.getRightChild(), root2.getRightChild());
+		
+		if(root1.getData() != root2.getData()) {
+			return false;
+		}
+		
+		boolean left = isSameTree(root1.getLeftChild(), root2.getLeftChild());
+		
+		boolean right = isSameTree(root1.getRightChild(), root2.getRightChild());
+		
+		return left && right;
 	}
 }

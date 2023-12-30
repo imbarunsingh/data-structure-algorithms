@@ -8,7 +8,7 @@ package com.recursion;
 public class FibonacciSeriesNthTerm {
 
 	public static void main(String args[]) {
-		int fibSum = fib(6);
+		int fibSum = fib(5);
 		System.out.print(fibSum);
 
 	}

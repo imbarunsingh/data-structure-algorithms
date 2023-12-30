@@ -1,82 +1,79 @@
 package com.queue.questions;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
-public class StackUsingQueues {
-	public static void main(String[] args) {
-		StackUsingTwoQueues stackUsingTwoQueues = new StackUsingTwoQueues();
-		stackUsingTwoQueues.push(10);
-		stackUsingTwoQueues.push(20);
-		stackUsingTwoQueues.push(30);
-
-		stackUsingTwoQueues.printQueue();
-
-		stackUsingTwoQueues.pop();
-		
-		stackUsingTwoQueues.printQueue();
-
-		stackUsingTwoQueues.push(40);
-		stackUsingTwoQueues.push(50);
-		stackUsingTwoQueues.push(60);
-		
-		stackUsingTwoQueues.pop();
-
-		stackUsingTwoQueues.printQueue();
-
-	}
-
-}
-
-class StackUsingTwoQueues {
-	private Queue<Object> queue1;
-	private Queue<Object> queue2;
-
-	public StackUsingTwoQueues() {
-		this.queue1 = new LinkedList<Object>();
-		this.queue2 = new LinkedList<Object>();
-	}
-
-	public void push(Object data) {
-		if (queue1.isEmpty() && queue2.isEmpty()) {
-			queue1.add(data);
-			return;
-		}
-
-		if (queue1.isEmpty()) {
-			queue2.add(data);
-		} else {
-			queue1.add(data);
-		}
-	}
-
-	public Object pop() {
-		int size, i = 0;
-		if (queue2.isEmpty()) {
-			size = queue1.size();
-			while (i < size - 1) {
-				queue2.add(queue1.remove());
-				i++;
-			}
-			return queue1.remove();
-		} else if (queue1.isEmpty()) {
-			size = queue2.size();
-			while (i < size - 1) {
-				queue1.add(queue2.remove());
-				i++;
-			}
-			return queue2.remove();
-
-		}
-		return null;
-	}
-
-	public void printQueue() {
-		if (!queue1.isEmpty()) {
-			System.out.println(queue1);
-		} else if (!queue2.isEmpty()) {
-			System.out.println(queue2);
-		}
-	}
-
+class StackUsingQueues {
+	
+    Queue<Integer> q1 = new LinkedList<>(),
+                   q2 = new LinkedList<>();
+ 
+    void remove()
+    {
+        if (q1.isEmpty())
+            return;
+ 
+        // Leave one element in q1 and
+        // push others in q2.
+        while (q1.size() != 1) {
+            q2.add(q1.peek());
+            q1.remove();
+        }
+ 
+        // Pop the only left element
+        // from q1
+        q1.remove();
+ 
+        // swap the names of two queues
+        Queue<Integer> q = q1;
+        q1 = q2;
+        q2 = q;
+    }
+ 
+    void add(int x) { q1.add(x); }
+ 
+    int top()
+    {
+        if (q1.isEmpty())
+            return -1;
+ 
+        while (q1.size() != 1) {
+            q2.add(q1.peek());
+            q1.remove();
+        }
+ 
+        // last pushed element
+        int temp = q1.peek();
+ 
+        // to empty the auxiliary queue after
+        // last operation
+        q1.remove();
+ 
+        // push last element to q2
+        q2.add(temp);
+ 
+        // swap the two queues names
+        Queue<Integer> q = q1;
+        q1 = q2;
+        q2 = q;
+        return temp;
+    }
+ 
+    int size() { return q1.size(); }
+ 
+    // Driver code
+    public static void main(String[] args)
+    {
+        StackUsingQueues s = new StackUsingQueues();
+        s.add(1);
+        s.add(2);
+        s.add(3);
+ 
+        System.out.println("current size: " + s.size());
+        System.out.println(s.top());
+        s.remove();
+        System.out.println(s.top());
+        s.remove();
+        System.out.println(s.top());
+        System.out.println("current size: " + s.size());
+    }
 }

@@ -8,11 +8,7 @@ public class Application {
 	public static void main(String[] args) {
 		
 		BinarySearchTree tree = new BinarySearchTree();
-		
-		
-		
-		
-				
+							
 		tree.insertRecord(50);
 		tree.insertRecord(40);
 		tree.insertRecord(98);

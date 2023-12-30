@@ -6,25 +6,53 @@ import com.linkedlist.singly.SinglyLinkedList;
 
 class NthNodeFromEndImpl {
 
-	public static int getNthNodeFromEnd(int n, SinglyLinkedList linkedList) {
+	// Time Complexity : O(n) + O(n)
+	public static int getNthNodeFromEndBruteForce(int n, SinglyLinkedList linkedList) {
 
 		if (linkedList.isEmpty()) {
 			throw new EmptyLinkedListException("Empty Linked List.");
 		}
+		Node currentNode = linkedList.getHead();
+		int size = 0;
+		while (currentNode != null) {
+			currentNode = currentNode.getNext();
+			size++;
+		}
 
 		// (size - n + 1)th node from beginning is that node
-		int nthNodeFromBegining = linkedList.getSize() - n + 1;
+		int nthNodeFromBegining = size - n + 1;
 
-		Node currNode = linkedList.getHead();
+		currentNode = linkedList.getHead();
 		int counter = 0;
-		while (currNode != null) {
-			if (counter == nthNodeFromBegining - 1) { // working with 0 as base index
+		while (currentNode != null) {
+			counter++;
+			if (counter == nthNodeFromBegining) { // working with 1 as base index
 				break;
 			}
-			counter++;
-			currNode = currNode.getNext();
+			currentNode = currentNode.getNext();
 		}
-		return currNode.getData();
+		return currentNode.getData();
+	}
+	//Better since requires less iteration
+	public static Object getNthNodeFromEndOptimized(int n, SinglyLinkedList linkedList) {
+		if (linkedList.isEmpty()) {
+			throw new EmptyLinkedListException("Empty Linked List.");
+		}
+		Node firstPointer = linkedList.getHead();
+		Node secondPointer = linkedList.getHead();
+
+		int counter = 0;
+		//Till reaches Nth node from begining
+		while(counter != n) {
+			counter++;
+			firstPointer = firstPointer.getNext();
+		}
+
+		while (firstPointer != null) {
+			firstPointer = firstPointer.getNext();
+			secondPointer = secondPointer.getNext();
+		}
+		return secondPointer.getData();
 	}
 }
 
@@ -42,7 +70,9 @@ public class NthNodeFromEnd {
 		linkedList.printList();
 		System.out.println("----------------------------------------------------");
 
-		int nthNodeFromEnd = NthNodeFromEndImpl.getNthNodeFromEnd(4, linkedList);
-		System.out.println("Nth node from End : " + nthNodeFromEnd);
+		int n = 2;
+		System.out.println(n + "th node from END->BruteForce : " + NthNodeFromEndImpl.getNthNodeFromEndBruteForce(n, linkedList));
+		
+		System.out.println(n + "th node from END->Optimal : " + NthNodeFromEndImpl.getNthNodeFromEndOptimized(n, linkedList));
 	}
 }

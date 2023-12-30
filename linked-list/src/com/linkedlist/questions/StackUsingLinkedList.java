@@ -6,6 +6,8 @@ import com.linkedlist.Node;
 
 class StackLinkedListImplementation {
 
+	private Node top;
+	
 	private Node head;
 
 	private int size;
@@ -14,33 +16,39 @@ class StackLinkedListImplementation {
 		return size == 0;
 	}
 
-	private void insertAtBegining(int data) {
+	private void insertAtTail(int data) {
 		Node newNode = new Node(data);
 		if (isEmpty()) {
-			head = newNode;
+			head = top = newNode;
 		} else {
-			newNode.setNext(head);
-			head = newNode;
-		}
+			top.setNext(newNode);
+			top = newNode;
+		}		
 		size++;
 	}
 
-	private int deleteFromBegining() {
+
+	private int deleteAtTail() {
 		if (isEmpty()) {
 			throw new EmptyStackException();
 		}
-		Node deletedNode = head;
-		head = head.getNext();
+		int removeNodeData = top.getData();
+		Node currentNode = head;
+		while (currentNode.getNext() != top) {
+			currentNode = currentNode.getNext();			
+		}
+		top = currentNode;
+		top.setNext(null);
 		size--;
-		return deletedNode.getData();
+		return removeNodeData;
 	}
 
 	public void push(int data) {
-		insertAtBegining(data);
+		insertAtTail(data);
 	}
 
 	public int pop() {
-		return deleteFromBegining();
+		return deleteAtTail();
 	}
 
 	public void printStack() {
@@ -76,6 +84,11 @@ public class StackUsingLinkedList {
 
 		System.out.println("----Assert push operation in stack::---------");
 		stack.push(40);
+		stack.printStack();
+		System.out.println("----------------------------------------------------");
+		
+		System.out.println("----Assert pop operation in stack::---------");
+		System.out.println(stack.pop());
 		stack.printStack();
 		System.out.println("----------------------------------------------------");
 

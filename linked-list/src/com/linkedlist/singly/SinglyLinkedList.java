@@ -119,22 +119,17 @@ public class SinglyLinkedList {
 			return deleteFromBegining();
 		}
 
-		Node currentNode = head;
-		Node nextNode = null, previousNode = null;
-
-		int traversedIndex = 0;
-		while (currentNode != null) {
-			if (traversedIndex == index) {
-				nextNode = currentNode.getNext();
+		Node temp = head;
+		int counter = 0;
+		while (temp != null) {
+			if (counter + 1 == index) {
+				deletedNode = temp.getNext();
+				temp.setNext(temp.getNext().getNext());				
 				break;
 			}
-			previousNode = currentNode;
-			currentNode = currentNode.getNext();
-			traversedIndex++;
+			temp = temp.getNext();
+			counter++;
 		}
-		previousNode.setNext(nextNode);
-		deletedNode = currentNode;
-		currentNode = null; // Making ready for GC, anyway local variables are null when the scope is done
 		size--;
 		return deletedNode;
 	}

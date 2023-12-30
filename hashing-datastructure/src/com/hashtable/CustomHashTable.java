@@ -57,7 +57,7 @@ public class CustomHashTable {
 	
 	public void insert(String word) {
 		
-		int index = hashFunc1(word);
+		int index = hashFunc1(word); 
 		int stepSize = hashFunc2(word);
 		
 		while(hashArray[index] != null) { // if Collision happens

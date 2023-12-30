@@ -16,7 +16,7 @@ public class Factorial {
 		System.out.println("The factorial of " + factorialNum + " is : " + fact(factorialNum));
 	}
 	
-	public static int fact(int n) {
+	private static int fact(int n) {
 		if (n == 0)  {
 			return 1;
 		}
