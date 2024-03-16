@@ -2,7 +2,7 @@ package com.recursion;
 
 import java.util.Scanner;
 
-//Refer Nishant Chahar Youtube video for explanation
+//Refer Nishant Chahar/Babbar Youtube video for explanation
 public class StringSubsequences {
 
 	public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class StringSubsequences {
 		//take case
 		printSS(source, response + source.charAt(index), index+1);
 		//not take case
-		printSS(source, response + "", index+1);
+		printSS(source, response, index+1);
 	}	
 
 }

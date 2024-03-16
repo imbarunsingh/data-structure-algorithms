@@ -10,13 +10,13 @@ public class CountWays2ReachNthStairProblem {
 		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.println("Enter the staircase number you want to find teh ways for ::");
 			int n = scanner.nextInt();
-			int countOfWays2ReachNthStair = fib(n);
+			int countOfWays2ReachNthStair = fib(n+1);
 			System.out.println("CountofWays2Reach " + n + "Nth Stair :: " + countOfWays2ReachNthStair);
 		}
 	}
 
 	public static int fib(int n) {
-		if (n == 1 || n == 2) {
+		if (n <= 1) {
 			return n;
 		}
 		return fib(n - 1) + fib(n - 2);

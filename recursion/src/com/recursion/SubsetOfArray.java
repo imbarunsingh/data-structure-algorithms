@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//Refer Nishant Chahar Youtube video for explanation
+//Refer Nishant Chahar/babbar Youtube video for explanation
 public class SubsetOfArray {
 
 	public static void main(String[] args) {
@@ -19,10 +19,10 @@ public class SubsetOfArray {
 			System.out.println(responseList);			
 			return;
 		}
-		// take case
+		// Include
 		responseList.add(sourceArr[index]);
 		printSS(sourceArr, responseList, index + 1);
-		// not take case
+		// exclude
 		responseList.remove(responseList.size() - 1);
 		printSS(sourceArr, responseList, index + 1);
 	}

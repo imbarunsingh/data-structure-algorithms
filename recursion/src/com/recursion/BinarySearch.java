@@ -17,16 +17,16 @@ public class BinarySearch {
 	private static int binarySearch(int[] array, int elementToBeSearched, int startIndex, int endIndex) {
 
 		int midIndex = (startIndex + endIndex) / 2;
+		
 		if (array[midIndex] == elementToBeSearched) {
 			return midIndex;
-		} else {
-			if (elementToBeSearched < array[midIndex]) {
-				endIndex = midIndex - 1;
-			} else if (elementToBeSearched > array[midIndex]) {
-				startIndex = midIndex + 1;
-			}
-			return binarySearch(array, elementToBeSearched, startIndex, endIndex);
 		}
+		if (elementToBeSearched < array[midIndex]) {
+			endIndex = midIndex - 1;
+		} else if (elementToBeSearched > array[midIndex]) {
+			startIndex = midIndex + 1;
+		}
+		return binarySearch(array, elementToBeSearched, startIndex, endIndex);
 
 	}
 

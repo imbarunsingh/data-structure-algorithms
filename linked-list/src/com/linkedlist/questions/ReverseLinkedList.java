@@ -19,7 +19,9 @@ public class ReverseLinkedList {
 
 		System.out.println("-----------------Printing the Reversed Linked---------------------");
 		//reverseLinkedList(linkedList.getHead());
-		reverseLinkedListBruteForce(linkedList.getHead());
+		//reverseLinkedListBruteForce(linkedList.getHead());
+		
+		reverseLinkedListOptimal(linkedList.getHead());
 		
 	}
 	
@@ -47,7 +49,7 @@ public class ReverseLinkedList {
 		}		
 	}
 	
-	public static void reverseLinkedList(Node headNode) {
+	public static void reverseLinkedListOptimal(Node headNode) {
 		Node currentNode = headNode;
 		Node prevNode = null;
 		Node nextNode = null;
@@ -55,12 +57,13 @@ public class ReverseLinkedList {
 		while (currentNode != null) {
 			nextNode = currentNode.getNext();
 			currentNode.setNext(prevNode);
+			
 			prevNode = currentNode;
 			currentNode = nextNode;
 		}
 		currentNode = prevNode;
 		while (currentNode != null) {
-			System.out.println(currentNode);
+			System.out.println(currentNode.getData());
 			currentNode = currentNode.getNext();
 		}
 	}

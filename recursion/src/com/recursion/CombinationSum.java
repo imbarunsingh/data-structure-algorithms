@@ -8,6 +8,7 @@ public class CombinationSum {
 	public static void main(String[] args) {
 		int arr[] = { 2, 3, 6, 7 };
 		List<List<Integer>> responseList = new ArrayList<>();
+		
 		combinationSum(arr, responseList, 7, 0, new ArrayList<>());
 		responseList.stream().forEach(x -> System.out.println(x));
 
@@ -26,6 +27,7 @@ public class CombinationSum {
 			combinationSum(arr, responseList, target - arr[index], index, response);
 			response.remove(response.size() - 1); // backtracking
 		}
+		//not take
 		combinationSum(arr, responseList, target, index + 1, response);
 	}
 }
